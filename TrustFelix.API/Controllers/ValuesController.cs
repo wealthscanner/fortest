@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TrustFelix.API.Data;
+using Microsoft.Extensions.Configuration;
 
 namespace TrustFelix.API.Controllers
 {
@@ -14,9 +15,11 @@ namespace TrustFelix.API.Controllers
     public class ValuesController : ControllerBase
     {
         private readonly DataContext _context;
+        IConfiguration _configuration;
 
-        public ValuesController(DataContext context)
+        public ValuesController(DataContext context, IConfiguration configuration)
         {
+            this._configuration = configuration;
             this._context = context;
         }
 
@@ -25,6 +28,13 @@ namespace TrustFelix.API.Controllers
         public async Task<IActionResult> GetValues()
         {
             var values = await this._context.Values.ToListAsync();
+
+            string val = this._configuration.GetConnectionString("DefaultConnection");
+
+            Models.Values mval = new Models.Values();
+            mval.Id = 99;
+            mval.Name = val;
+            values.Add(mval);
 
             return (Ok(values));
         }
