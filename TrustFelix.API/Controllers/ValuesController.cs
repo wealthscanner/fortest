@@ -6,10 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TrustFelix.API.Data;
 using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Authorization;
 
 namespace TrustFelix.API.Controllers
 {
-    // http://localhost:5000/api/values/5
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ValuesController : ControllerBase
@@ -23,7 +24,6 @@ namespace TrustFelix.API.Controllers
             this._context = context;
         }
 
-        // GET api/values
         [HttpGet]
         public async Task<IActionResult> GetValues()
         {
@@ -32,7 +32,7 @@ namespace TrustFelix.API.Controllers
             return (Ok(values));
         }
 
-        // GET api/values/5
+        [AllowAnonymous]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetValue(int id)
         {
