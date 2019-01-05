@@ -29,13 +29,6 @@ namespace TrustFelix.API.Controllers
         {
             var values = await this._context.Values.ToListAsync();
 
-            string val = this._configuration.GetConnectionString("DefaultConnection");
-
-            Models.Values mval = new Models.Values();
-            mval.Id = 99;
-            mval.Name = val;
-            values.Add(mval);
-
             return (Ok(values));
         }
 
@@ -43,7 +36,18 @@ namespace TrustFelix.API.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetValue(int id)
         {
-            var value = await this._context.Values.FirstOrDefaultAsync(x => x.Id == id);
+            Models.Value value;
+
+            if (id != 0)
+                value = await this._context.Values.FirstOrDefaultAsync(x => x.Id == id);
+            else
+            {
+                string val = this._configuration.GetConnectionString("DefaultConnection");
+                Models.Value mval = new Models.Value();
+                mval.Id = 99;
+                mval.Name = val;
+                value = mval;
+            }
             return Ok(value);
         }
 
