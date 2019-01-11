@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { AuthService } from '../_service/auth.service';
-import { AltertifyService } from '../_service/altertify.service';
+import { AlertifyService } from '../_service/alertify.service';
 
 @Component({
   selector: 'app-register',
@@ -11,7 +11,7 @@ export class RegisterComponent implements OnInit {
   @Output() cancelRegister = new EventEmitter();
   model: any = {};
 
-  constructor(private authService: AuthService, private alertify: AltertifyService) { }
+  constructor(private authService: AuthService, private alertify: AlertifyService) { }
 
   ngOnInit() {
   }

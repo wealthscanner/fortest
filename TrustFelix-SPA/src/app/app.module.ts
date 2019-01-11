@@ -11,11 +11,12 @@ import { AuthService } from './_service/auth.service';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { ErrorInterceptorProvider } from './_service/error.interceptor';
-import { AltertifyService } from './_service/altertify.service';
+import { AlertifyService } from './_service/alertify.service';
 import { AllAssetComponent } from './all-asset/all-asset.component';
 import { MyAssetComponent } from './my-asset/my-asset.component';
 import { MessagesComponent } from './messages/messages.component';
 import { appRoutes } from './routes';
+import { AuthGuard } from './_guards/auth.guard';
 
 @NgModule({
    declarations: [
@@ -37,7 +38,8 @@ import { appRoutes } from './routes';
    providers: [
       AuthService,
       ErrorInterceptorProvider,
-      AltertifyService
+      AlertifyService,
+      AuthGuard
    ],
    bootstrap: [
       AppComponent
