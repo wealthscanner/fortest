@@ -6,8 +6,8 @@ import { MessagesComponent } from './messages/messages.component';
 
 export const appRoutes: Routes =  [
     { path: 'home', component: HomeComponent },
+    { path: 'allasset', component: AllAssetComponent },   /* members */
     { path: 'myasset', component: MyAssetComponent },
-    { path: 'allasset', component: AllAssetComponent },
     { path: 'messages', component: MessagesComponent },
     { path: '**', redirectTo: 'home', pathMatch: 'full' }
 ];
