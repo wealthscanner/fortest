@@ -38,6 +38,7 @@ namespace TrustFelix.API
             services.AddCors();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddScoped<IAuthRepository, AuthRepository>();
+            services.AddTransient<Seed>();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options => {
                     options.TokenValidationParameters = new TokenValidationParameters
@@ -54,7 +55,7 @@ namespace TrustFelix.API
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, Seed seeder)
         {
             if (env.IsDevelopment())
             {
@@ -80,6 +81,7 @@ namespace TrustFelix.API
 
             app.UseAuthentication();
 
+            seeder.SeedUsers();
             app.UseCors(builder => builder.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
 
             // app.UseHttpsRedirection();
