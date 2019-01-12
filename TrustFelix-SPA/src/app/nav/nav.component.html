@@ -1,16 +1,16 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
   <div class="container">
-    <a class="navbar-brand" [routerLink]="['/home']">wealthence</a>
+    <a class="navbar-brand" [routerLink]="['/home']">fcomplete</a>
 
     <ul *ngIf="loggedIn()" class="navbar-nav mr-auto">
       <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" [routerLink]="['/allasset']">Assets</a>
+        <a class="nav-link" [routerLink]="['/allasset']">Family</a>
       </li>
       <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" [routerLink]="['/myasset']">myAssets</a>
+        <a class="nav-link" [routerLink]="['/myasset']">Wealth</a>
       </li>
       <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" [routerLink]="['/messages']">myMessages</a>
+        <a class="nav-link" [routerLink]="['/messages']">Advice</a>
       </li>
     </ul>
 
