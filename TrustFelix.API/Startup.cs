@@ -38,6 +38,7 @@ namespace TrustFelix.API
             services.AddCors();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddScoped<IAuthRepository, AuthRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
             services.AddTransient<Seed>();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options => {
@@ -81,7 +82,7 @@ namespace TrustFelix.API
 
             app.UseAuthentication();
 
-            seeder.SeedUsers();
+            // seeder.SeedUsers();
             app.UseCors(builder => builder.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
 
             // app.UseHttpsRedirection();
