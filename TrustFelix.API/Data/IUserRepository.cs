@@ -4,7 +4,7 @@ using TrustFelix.API.Models;
 
 namespace TrustFelix.API.Data
 {
-    public interface IAssetRepository
+    public interface IUserRepository
     {
          void Add<T>(T entity) where T: class;
 
