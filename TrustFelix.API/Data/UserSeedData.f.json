@@ -1,0 +1,86 @@
+[
+    {
+      "Username": "Ingrid",
+      "Gender": "female",
+      "DateOfBirth": "1964-02-21",
+      "Password": "password",
+      "KnownAs": "Lola",
+      "Created": "2017-08-02",
+      "LastActive": "2017-08-02",
+      "Introduction": "EUR 734.890,23",
+      "LookingFor": "retirement planing",
+      "Interests": "financial wellbeing check and financial dashboard",
+      "City": "Lachen SZ",
+      "Country": "Switzerland",
+      "Photos": [
+        {
+          "url": "https://randomuser.me/api/portraits/women/3.jpg",
+          "isMain": true,
+          "description": "foto description"
+        }
+      ]
+    },
+    {
+      "Username": "Larsen",
+      "Gender": "male",
+      "DateOfBirth": "1963-08-15",
+      "Password": "password",
+      "KnownAs": "Larsen",
+      "Created": "2017-02-17",
+      "LastActive": "2017-02-17",
+      "Introduction": "EUR 734.890,22",
+      "LookingFor": "retirement planing",
+      "Interests": "financial dashboard",
+      "City": "Lachen SZ",
+      "Country": "Switzerland",
+      "Photos": [
+        {
+          "url": "https://randomuser.me/api/portraits/men/76.jpg",
+          "isMain": true,
+          "description": "foto description"
+        }
+      ]
+    },
+    {
+      "Username": "Simon",
+      "Gender": "male",
+      "DateOfBirth": "1990-02-19",
+      "Password": "password",
+      "KnownAs": "Simon",
+      "Created": "2017-06-27",
+      "LastActive": "2017-06-27",
+      "Introduction": "EUR 25.920,41",
+      "LookingFor": "wealth accumulation",
+      "Interests": "financial wellbeing check and financial dashboard",
+      "City": "London",
+      "Country": "United Kingdom",
+      "Photos": [
+        {
+          "url": "https://randomuser.me/api/portraits/men/14.jpg",
+          "isMain": true,
+          "description": "foto description"
+        }
+      ]
+    },
+    {
+      "Username": "Annmarie",
+      "Gender": "female",
+      "DateOfBirth": "1991-02-25",
+      "Password": "password",
+      "KnownAs": "Annmarie",
+      "Created": "2017-07-17",
+      "LastActive": "2017-07-17",
+      "Introduction": "EUR 23.243,21",
+      "LookingFor": "wealth accumulation",
+      "Interests": "financial wellbeing check and financial dashboard",
+      "City": "Lachen SZ",
+      "Country": "Switzerland",
+      "Photos": [
+        {
+          "url": "https://randomuser.me/api/portraits/women/74.jpg",
+          "isMain": true,
+          "description": "foto description"
+        }
+      ]
+    }
+  ]
