@@ -12,11 +12,12 @@ import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { ErrorInterceptorProvider } from './_service/error.interceptor';
 import { AlertifyService } from './_service/alertify.service';
-import { AllAssetComponent } from './all-asset/all-asset.component';
+import { MemberListComponent } from './member-list/member-list.component';
 import { MyAssetComponent } from './my-asset/my-asset.component';
 import { MessagesComponent } from './messages/messages.component';
 import { appRoutes } from './routes';
 import { AuthGuard } from './_guards/auth.guard';
+import { UserService } from './_service/user.service';
 
 @NgModule({
    declarations: [
@@ -24,7 +25,7 @@ import { AuthGuard } from './_guards/auth.guard';
       NavComponent,
       HomeComponent,
       RegisterComponent,
-      AllAssetComponent,
+      MemberListComponent,
       MyAssetComponent,
       MessagesComponent
    ],
@@ -39,7 +40,8 @@ import { AuthGuard } from './_guards/auth.guard';
       AuthService,
       ErrorInterceptorProvider,
       AlertifyService,
-      AuthGuard
+      AuthGuard,
+      UserService
    ],
    bootstrap: [
       AppComponent
