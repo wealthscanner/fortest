@@ -87,7 +87,8 @@ namespace TrustFelix.API
 
             app.UseAuthentication();
 
-            //  seeder.SeedUsers();
+            /* seeder.SeedUsers(); */
+            
             app.UseCors(builder => builder.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
 
             // app.UseHttpsRedirection();
