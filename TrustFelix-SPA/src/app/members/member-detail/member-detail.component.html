@@ -1,6 +1,6 @@
 <div class="container mt-4">
     <div class="row">
-        <h1>{{user.username}}'s profile</h1>
+        <h1>your profile</h1>
       </div>
     <div class="row">
     <div class="col-sm-4">
@@ -37,23 +37,29 @@
     <div class="col-sm-8">
       <div class="tab-panel">
         <tabset class="member-tabset">
-          <tab heading="About">
-            <h4>Interests</h4>
-            <p>{{user.interests}}</p>
-            <h4>Looking for</h4>
-            <p>{{user.lookingFor}}</p>
+          <tab heading="Edit profile">
+            <form>
+              <h4>Interests</h4>
+              <textarea name="introduction" rows="2" class="form-control"
+                [(ngModel)]="user.introduction"></textarea>
+              <h4>Looking for</h4>
+              <textarea name="lookingFor" rows="2" class="form-control"
+                [(ngModel)]="user.lookingFor"></textarea>
+              <h4>Interests</h4>
+              <textarea name="interests" rows="2" class="form-control"
+                [(ngModel)]="user.interests"></textarea>
+              <h4>Location details</h4>
+              <div class="form-inline">
+                <label for="city">City: </label>
+                <input class="form-control" type="text" name="city" [(ngModel)]="user.city">
+                <label for="country">Country: </label>
+                <input class="form-control" type="text" name="country" [(ngModel)]="user.country">
+              </div>
+              </form>
           </tab>
-          <tab heading="Overview">
-              <h4>Chart</h4>
-              <p>{{user.introduction}}</p>
-          </tab>
-          <tab heading="Data vault">
-              <h4>Documents</h4>
-              <ngx-gallery [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
-          </tab>
-          <tab heading="Messages">
-            <h4>Notifications</h4>
-            <p>Bank, broker ... notifications</p>
+          <tab heading="Edit data vault">
+              <h4>Edit documents</h4>
+              <p>todo implement</p>
           </tab>
     </tabset>
       </div>
