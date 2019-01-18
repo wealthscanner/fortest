@@ -13,3 +13,7 @@
     background-color: #fff;
     border-top: none;
 }
+
+.capitalize::first-letter {
+    text-transform: uppercase;
+}
