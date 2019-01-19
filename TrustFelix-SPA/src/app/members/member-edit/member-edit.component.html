@@ -43,9 +43,6 @@
       <tabset class="member-tabset">
         <tab heading="Edit profile">
           <form #editForm="ngForm" id="editForm" (ngSubmit)="updateUser()">
-            <h4>Interests</h4>
-            <textarea name="Wealth" rows="2" class="form-control"
-              [(ngModel)]="user.introduction"></textarea>
             <h4>Looking for</h4>
             <textarea name="lookingFor" rows="2" class="form-control"
               [(ngModel)]="user.lookingFor"></textarea>
@@ -59,7 +56,7 @@
               <label for="country">Country: </label>
               <input class="form-control" type="text" name="country" [(ngModel)]="user.country">
             </div>
-            </form>
+          </form>
         </tab>
         <tab heading="Edit data vault">
             <h4>Edit documents</h4>

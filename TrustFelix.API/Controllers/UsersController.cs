@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TrustFelix.API.Data;
 using TrustFelix.API.Dtos;
+using TrustFelix.API.Models;
 
 namespace TrustFelix.API.Controllers
 {
@@ -52,6 +53,11 @@ namespace TrustFelix.API.Controllers
             var userFromRepo = await this._repo.GetUser(id);
 
             this._mapper.Map(userForUpdateDto, userFromRepo);
+
+            Log lg = new Log();
+            lg.Text = "Introduction: " + userForUpdateDto.Introduction + ", LookingFor: " + userForUpdateDto.LookingFor
+                + ", City: " + userForUpdateDto.City + ", Country: " + userForUpdateDto.Country;
+            this._repo.Add(lg);
 
             if (await this._repo.SaveAll())
                 return NoContent();
