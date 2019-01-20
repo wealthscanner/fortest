@@ -1,8 +1,8 @@
 using System;
 
-namespace TrustFelix.API.Models
+namespace TrustFelix.API.Dtos
 {
-    public class Photo
+    public class PhotoForReturnDto
     {
         public int Id { get; set; }
 
@@ -14,10 +14,7 @@ namespace TrustFelix.API.Models
 
         public bool IsMain { get; set; }
 
-        public string PublicID { get; set; }
+        public string PublicId { get; set; }
 
-        public User User { get; set; }
-
-        public int UserId { get; set; }
     }
 }

@@ -32,13 +32,13 @@ export class MemberEditComponent implements OnInit {
   updateUser() {
     this.userService.updateUser(this.authService.decodedToken.nameid, this.user).subscribe(next => {
       this.alertify.success('Profile updated successfully');
-
       /*
       clears out 'this.user.introduction', if this is present
       <textarea name="Wealth" rows="2" class="form-control"
       [(ngModel)]="user.introduction"></textarea>
       */
-      this.editForm.reset(this.user);
+      // this.editForm.reset(this.user);
+      this.editForm.resetForm(this.user);
 
     }, error => {
       this.alertify.error(error);
