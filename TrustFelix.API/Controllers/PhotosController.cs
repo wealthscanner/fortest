@@ -69,7 +69,7 @@ namespace TrustFelix.API.Controllers
                         var uploadParams = new ImageUploadParams()
                         {
                             File = new FileDescription(file.Name, stream),
-                            Transformation = new Transformation().Width(500).Crop("fill").Gravity("face")
+                            Transformation = new Transformation().Width(200).Crop("fill").Gravity("face").Height(200).Gravity("face")
                         };
 
                         uploadResult = this._cloudinary.Upload(uploadParams);
