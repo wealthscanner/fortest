@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using TrustFelix.API.Models;
@@ -21,6 +22,11 @@ namespace TrustFelix.API.Data
         public void Delete<T>(T entity) where T : class
         {
             this._context.Remove(entity);
+        }
+
+        public async Task<Photo> GetMainPhotoForUser(int userId)
+        {
+            return await this._context.Photos.Where(u => u.UserId == userId).FirstOrDefaultAsync(p => p.IsMain);
         }
 
         public async Task<Photo> GetPhoto(int id)
