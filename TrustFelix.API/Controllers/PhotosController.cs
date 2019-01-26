@@ -108,7 +108,7 @@ namespace TrustFelix.API.Controllers
                 var photoFromRepo = await this._repo.GetPhoto(id);
 
                 if (photoFromRepo.IsMain)
-                    return BadRequest("This is already the main photo");
+                    return BadRequest("This is already the main document");
 
                 var currentMainPhoto = await this._repo.GetMainPhotoForUser(userId);
 
@@ -119,6 +119,39 @@ namespace TrustFelix.API.Controllers
                     return NoContent();
 
                 return BadRequest("Could not set photo to main");
+            }
+
+            [HttpDelete("{id}")]
+            public async Task<IActionResult> DeletePhoto(int userId, int id)
+            {
+                if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+                    return Unauthorized();
+
+                var user = await this._repo.GetUser(userId);
+                if (!user.Photos.Any(p => p.Id == id))
+                    return Unauthorized();
+                
+                var photoFromRepo = await this._repo.GetPhoto(id);
+
+                if (photoFromRepo.IsMain)
+                    return BadRequest("You can not delete the main document");
+
+                if (photoFromRepo.PublicID != null)
+                {
+                    var deletionParams = new DeletionParams(photoFromRepo.PublicID);
+                    var result = this._cloudinary.Destroy(deletionParams);
+                    
+                    if (result.Result == "ok") {
+                        this._repo.Delete(photoFromRepo);
+                    }
+                }
+                else
+                    this._repo.Delete(photoFromRepo);
+
+                if (await this._repo.SaveAll())
+                    return Ok();
+
+                return BadRequest("Failed to delete the photo");
             }
     }
 }

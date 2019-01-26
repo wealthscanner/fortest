@@ -13,7 +13,7 @@ import { AlertifyService } from 'src/app/_service/alertify.service';
 })
 export class PhotoEditorComponent implements OnInit {
   @Input() photos: Photo[];
-  @Output() getMemberPhotoChange = new EventEmitter<string>();
+  //@Output() getMemberPhotoChange = new EventEmitter<string>();
 
   uploader: FileUploader;
   hasBaseDropZoneOver = false;
@@ -65,11 +65,33 @@ export class PhotoEditorComponent implements OnInit {
       this.currentMain.isMain = false;
       photo.isMain = true;
       this.authService.changeMemberPhoto(photo.url);
-
+      this.authService.currentUser.photoUrl = photo.url;
+      localStorage.setItem('user', JSON.stringify(this.authService.currentUser));
       // this.getMemberPhotoChange.emit(photo.url);  // Lösung ohne Update
     }, error => {
       this.alertify.error(error);
     });
+  }
+
+  deletePhoto(id: number) {
+    this.alertify.confirm('Are you sure to delete the document?', () => {
+      this.userService.deletePhoto(this.authService.decodedToken.nameid, id).subscribe(() => {
+        this.photos.slice(this.photos.findIndex(p => p.id === id), 1);
+
+        this.alertify.success('Photo has been deleted');
+      }, error => {
+        this.alertify.error('Failed to delete the photo');
+      });
+    });
+
+    /*const photo = {
+      id: 88,
+      url: 'http://www.pressfuel.com/media/stormyard/91/nikki_kimball_thumb.jpg',
+      dateAdded: new Date(),
+      description: 'description',
+      isMain: true
+    };
+    this.photos.push(photo);*/
   }
 
 }
