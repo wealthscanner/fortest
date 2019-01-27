@@ -9,9 +9,9 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/TrustFelix.API/bin/Debug/netcoreapp2.1/TrustFelix.API.dll",
+            "program": "${workspaceFolder}/technical.API/bin/Debug/netcoreapp2.1/technical.API.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/TrustFelix.API",
+            "cwd": "${workspaceFolder}/technical.API",
             "stopAtEntry": false,
             "internalConsoleOptions": "openOnSessionStart",
             "launchBrowser": {
