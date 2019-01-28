@@ -13,7 +13,7 @@ using technical.API.Models;
 
 namespace technical.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]")]   // controller..Auth
     [ApiController]
     public class AuthController : ControllerBase
     {
@@ -38,13 +38,12 @@ namespace technical.API.Controllers
             if (await this._repo.UserExistsAsync(userForRegisterDto.Username))
                 return (BadRequest("Username already exists"));
 
-            var usertoCreate = new User
-            {
-                Username = userForRegisterDto.Username
-            };
+            var usertoCreate = this._mapper.Map<User>(userForRegisterDto);
 
             var createdUser = await this._repo.Register(usertoCreate, userForRegisterDto.Password);
-            return StatusCode(201);
+            var userToReturn = this._mapper.Map<UserForDetailedDto>(createdUser);
+
+            return CreatedAtRoute("GetUser", new {controller = "Users", id = createdUser.Id}, userToReturn);
         }
 
         [HttpPost("login")]
