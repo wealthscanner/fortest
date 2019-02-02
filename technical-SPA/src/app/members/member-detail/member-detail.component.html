@@ -18,7 +18,11 @@
           </div>
           <div>
             <strong>Last Active:</strong>
-            <p>{{user.lastActive}}</p>
+            <p>{{user.lastActive | timeAgo}}</p>
+          </div>
+          <div>
+            <strong>Member since:</strong>
+            <p>{{user.created | date: 'mediumDate'}}</p>
           </div>
           <div>
             <strong>Wealth:</strong>
@@ -27,8 +31,8 @@
         </div>
         <div class="card-footer">
           <div class="btn-group d-flex">
-            <button class="btn btn-primary w-100">Like</button>
-            <button class="btn btn-success w-100">Message</button>
+            <button class="btn btn-primary w-100">Spending</button>
+            <button class="btn btn-success w-100">Assets</button>
           </div>
         </div>
       </div>

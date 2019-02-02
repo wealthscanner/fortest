@@ -7,10 +7,12 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using technical.API.Data;
 using technical.API.Dtos;
+using technical.API.Helpers;
 using technical.API.Models;
 
 namespace technical.API.Controllers
 {
+    [ServiceFilter(typeof(LogUserActivity))]
     [Authorize]
     [Route("api/[controller]")]
     [ApiController]

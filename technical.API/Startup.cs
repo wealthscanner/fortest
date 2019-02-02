@@ -57,6 +57,7 @@ namespace technical.API
                         ValidateAudience = false
                     };
                 });
+            services.AddScoped<LogUserActivity>();
 
             services.AddSingleton<IConfiguration>(Configuration);
         }
