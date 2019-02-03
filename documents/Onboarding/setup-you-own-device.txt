@@ -1,0 +1,82 @@
+
+# install dotnet core
+wget -q https://packages.microsoft.com/config/ubuntu/18.04/packages-microsoft-prod.deb
+sudo dpkg -i packages-microsoft-prod.deb
+sudo add-apt-repository universe
+sudo apt-get install apt-transport-https
+sudo apt-get update
+sudo apt-get install dotnet-sdk-2.2
+
+# => install vscode
+# download: https://code.visualstudio.com/Download
+cd ~/Downloads
+sudo dpkg -i code_1.30.2-1546901646_amd64.deb
+
+# => install vscode extensions
+# Angular Files
+# Angular Language Service
+# Angular v7 Snippets
+# angular2-switcher
+# Auto Close Tag
+# Bracket Pair Colorizer
+# C#
+# C# Extensions
+# Material Icon Theme
+# NuGet Package Manager
+# Path Intellisense
+# Prettier - Code formatter
+# TSLint
+
+# => install postman (download to downloads)
+wget https://dl.pstmn.io/download/latest/linux64
+sudo tar -xzf linux64 -C /opt
+rm linux64
+# start with
+ln -s /opt/Postman /usr/bin/postman
+/usr/bin/postman/Postman
+
+# => install Sqlite browser (sqlite as development database)
+ln -s /opt/Postman /usr/bin/postman
+
+# => install package manager for JavaScript
+sudo apt install npm
+
+# => install angular
+npm install -g @angular/cli
+
+# create project with no Angular routing and css
+cd /Dev/fortest
+ng new testproj
+# in testproj, delete everything except node_modules
+
+# => install git
+sudo apt install git
+git config --global user.name "youruser"
+git config --global user.name "youruser@gmail.com"
+
+# test the setup
+git clone https://github.com/wealthscanner/fortest.git
+cd fortest
+cd technical-SPA
+# copy node_modules into the folder
+
+# download vscode (it will download and install additional packages)
+code .
+
+cd technical-SPA
+# install used Angular packages
+npm install --save-dev @angular-devkit/build-angular
+npm install bootstrap
+npm install alertifyjs
+npm install ng2-file-upload
+npm install time-ago-pipe
+
+# execute ng update and update all packages as suggested
+ng update
+
+# install CloudinaryDotNet for dotnet
+dotnet add package CloudinaryDotNet
+
+# create database table structure
+dotnet ef database update
+
