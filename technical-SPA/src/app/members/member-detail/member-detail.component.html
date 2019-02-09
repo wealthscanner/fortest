@@ -17,11 +17,11 @@
             <p>{{user.age}}</p>
           </div>
           <div>
-            <strong>Last Active:</strong>
+            <strong>Last updated:</strong>
             <p>{{user.lastActive | timeAgo}}</p>
           </div>
           <div>
-            <strong>Member since:</strong>
+            <strong>Registered:</strong>
             <p>{{user.created | date: 'mediumDate'}}</p>
           </div>
           <div>
@@ -31,8 +31,8 @@
         </div>
         <div class="card-footer">
           <div class="btn-group d-flex">
-            <button class="btn btn-primary w-100">Spending</button>
-            <button class="btn btn-success w-100">Assets</button>
+            <button class="btn btn-primary w-100">Update</button>
+            <button class="btn btn-success w-100">Asset</button>
           </div>
         </div>
       </div>
@@ -41,9 +41,9 @@
       <div class="tab-panel">
         <tabset class="member-tabset">
           <tab heading="About">
-            <h4>Interests</h4>
+            <h4>Free text 1</h4>
             <p>{{user.interests}}</p>
-            <h4>Looking for</h4>
+            <h4>Free text 2</h4>
             <p>{{user.lookingFor}}</p>
           </tab>
           <tab heading="Overview">

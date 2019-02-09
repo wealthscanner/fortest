@@ -24,11 +24,11 @@
           <p>{{user.age}}</p>
         </div>
         <div>
-          <strong>Last Active:</strong>
+          <strong>Last updated:</strong>
           <p>{{user.lastActive | timeAgo}}</p>
         </div>
         <div>
-          <strong>Member since:</strong>
+          <strong>Registered:</strong>
           <p>{{user.created | date: 'mediumDate'}}</p>
         </div>
         <div>
@@ -47,10 +47,10 @@
       <tabset class="member-tabset">
         <tab heading="Edit profile">
           <form #editForm="ngForm" id="editForm" (ngSubmit)="updateUser()">
-            <h4>Looking for</h4>
+            <h4>Free text 1</h4>
             <textarea name="lookingFor" rows="2" class="form-control"
               [(ngModel)]="user.lookingFor"></textarea>
-            <h4>Interests</h4>
+            <h4>Free text 2</h4>
             <textarea name="interests" rows="2" class="form-control"
               [(ngModel)]="user.interests"></textarea>
             <h4>Location details</h4>
