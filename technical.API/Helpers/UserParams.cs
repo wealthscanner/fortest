@@ -6,7 +6,7 @@ namespace technical.API.Helpers
 
         public int PageNumber { get; set; } = 1;
 
-        public int pageSize = 5;
+        public int pageSize = 4;
 
         public int PageSize
         {
