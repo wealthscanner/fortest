@@ -13,6 +13,7 @@
     </ul>
   </div>
   <div class="card-body p-1">
-    <p class="card-text text-muted text-center">{{user.username | titlecase}}<br/>{{user.introduction}}</p>
+    <p *ngIf="user.gender!=='collection'" class="card-text text-muted text-center">{{user.username | titlecase}}<br/>{{user.introduction}}</p>
+    <p *ngIf="user.gender==='collection'" class="card-text text-muted text-center"><b>{{user.username | titlecase}}</b><br/><b>{{user.introduction}}</b></p>
   </div>
 </div>

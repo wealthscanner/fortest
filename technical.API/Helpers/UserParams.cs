@@ -18,5 +18,6 @@ namespace technical.API.Helpers
 
         public string Gender { get; set; }
         
+        public int OlderThanDays { get; set; } = 0;
     }
 }

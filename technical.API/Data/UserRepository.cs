@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -53,6 +54,13 @@ namespace technical.API.Data
                 users = users.Where(u => u.Id == userParams.UserId);
             else
                 users = users.OrderBy(u => u.Gender);
+
+            if (userParams.OlderThanDays != 0)
+            {
+                var minActive = DateTime.Today.AddDays(-userParams.OlderThanDays - 1);
+
+                users = users.Where(u => u.LastActive <= minActive);
+            }
 
             return await PagedList<User>.CreateAsync(users, userParams.PageNumber, userParams.PageSize);
 
