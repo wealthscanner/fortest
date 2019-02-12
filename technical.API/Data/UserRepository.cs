@@ -46,9 +46,16 @@ namespace technical.API.Data
 
         public async Task<PagedList<User>> GetUsers(UserParams userParams)
         {
-            var users = this._context.Users.Include(p => p.Photos);
+            var users = this._context.Users.Include(p => p.Photos).AsQueryable();
+
+            // if collection, then show all sub-accounts
+            if (userParams.Gender != "collection")
+                users = users.Where(u => u.Id == userParams.UserId);
+            else
+                users = users.OrderBy(u => u.Gender);
 
             return await PagedList<User>.CreateAsync(users, userParams.PageNumber, userParams.PageSize);
+
         }
 
         public async Task<bool> SaveAll()

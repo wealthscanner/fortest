@@ -1,10 +1,11 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
   <div class="container">
-    <a class="navbar-brand" [routerLink]="['/home']">RUNDWERT</a>
+    <a class="navbar-brand" [routerLink]="['/home']">.finopt</a>
 
     <ul *ngIf="loggedIn()" class="navbar-nav mr-auto">
       <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" [routerLink]="['/members']">FamilyAccount</a>
+        <a *ngIf="this.authService.currentUser.gender==='collection'" class="nav-link" [routerLink]="['/members']">FamilyAccount</a>
+        <a *ngIf="this.authService.currentUser.gender!=='collection'" class="nav-link" [routerLink]="['/members']">Account</a>
       </li>
       <li class="nav-item" routerLinkActive="active">
         <a class="nav-link" [routerLink]="['/messages']">Transactions</a>

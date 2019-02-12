@@ -33,6 +33,16 @@ namespace technical.API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetUsers([FromQuery]UserParams userParams)
         {
+            var currentUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+            var userFromRepo = await this._repo.GetUser(currentUserId);
+            userParams.UserId = currentUserId;
+
+            // if not set, then use gender of logged in user
+            if (string.IsNullOrEmpty(userParams.Gender))
+            {
+                userParams.Gender = userFromRepo.Gender;
+            }
+
             var users = await this._repo.GetUsers(userParams);
             var usersToReturn = this._mapper.Map<IEnumerable<UserForListDto>>(users);
             Response.AddPagination(users.CurrentPage, users.PageSize, users.TotalCount,
