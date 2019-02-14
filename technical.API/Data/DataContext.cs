@@ -14,7 +14,26 @@ namespace technical.API.Data
 
         public DbSet<Photo> Photos { get; set; }
 
-
         public DbSet<Log> Logging { get; set; }
+
+        public DbSet<Sell> Sells { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.Entity<Sell>()
+                .HasKey(k => new {k.SellerId, k.AssetId});
+
+            builder.Entity<Sell>()
+                .HasOne(u => u.Seller)
+                .WithMany(u => u.Assets)
+                .HasForeignKey(u => u.SellerId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<Sell>()
+                .HasOne(u => u.Asset)
+                .WithMany(u => u.Sellers)
+                .HasForeignKey(u => u.AssetId)
+                .OnDelete(DeleteBehavior.Restrict);
+        }
     }
 }

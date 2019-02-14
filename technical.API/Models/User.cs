@@ -32,5 +32,10 @@ namespace technical.API.Models
         public string Country { get; set; }
 
         public ICollection<Photo> Photos { get; set; }
+
+        public ICollection<Sell> Sellers { get; set; }
+
+        public ICollection<Sell> Assets { get; set; }
+
     }
 }

@@ -38,6 +38,12 @@ namespace technical.API.Data
             return photo;
         }
 
+        public async Task<Sell> GetSell(int userId, int assetId)
+        {
+            return await this._context.Sells.FirstOrDefaultAsync(u =>
+                u.SellerId == userId && u.AssetId == assetId);
+        }
+
         public async Task<User> GetUser(int id)
         {
             var user = await this._context.Users.Include(p => p.Photos).FirstOrDefaultAsync(u => u.Id == id);

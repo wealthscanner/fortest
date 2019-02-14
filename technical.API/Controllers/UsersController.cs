@@ -79,5 +79,32 @@ namespace technical.API.Controllers
             throw new Exception($"Updating user {id} failed on save");
         }
 
+        [HttpPost("{id}/sell/{assetId}")]
+        public async Task<IActionResult> SellAsset(int id, int assetId)
+        {
+            if (id != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+                return Unauthorized();
+
+            var sell = await this._repo.GetSell(id, assetId);
+
+            if (sell != null)
+                return BadRequest("Asset already added to SalesCloud");
+
+            if (await this._repo.GetUser(assetId) == null)
+                return NotFound();
+
+            sell = new Sell
+            {
+                SellerId = id,
+                AssetId = assetId
+            };
+
+            this._repo.Add<Sell>(sell);
+            if (await this._repo.SaveAll())
+                return Ok();
+
+            return BadRequest("Asset sell FAILED");
+        }
+
     }
 }

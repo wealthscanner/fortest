@@ -19,5 +19,9 @@ namespace technical.API.Helpers
         public string Gender { get; set; }
         
         public int OlderThanDays { get; set; } = 0;
+
+        public bool Sellers { get; set; } = false;
+
+        public bool Assets { get; set; } = false;
     }
 }

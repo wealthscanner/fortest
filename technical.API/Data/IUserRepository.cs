@@ -21,6 +21,6 @@ namespace technical.API.Data
 
          Task<Photo> GetMainPhotoForUser(int userId);
 
-         
+        Task<Sell> GetSell(int userId, int assetId);         
     }
 }

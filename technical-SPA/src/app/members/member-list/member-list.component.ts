@@ -58,7 +58,7 @@ export class MemberListComponent implements OnInit {
     }, error => {
       this.alertify.error(error);
     });
-    this.setQueryParameters();
+//    this.setQueryParameters();
   }
 
 }
