@@ -48,17 +48,25 @@ namespace technical.API.Data
         public async Task<PagedList<User>> GetUsers(UserParams userParams)
         {
             var users = this._context.Users.Include(p => p.Photos).AsQueryable();
+            var minActive = DateTime.Today.AddDays(-userParams.OlderThanDays - 1);
+
+            Log lg = new Log();
+            lg.Text = "Gender: " + userParams.Gender
+                + ", OlderThanDays: " + userParams.OlderThanDays
+                + ", <= minActive: " + minActive;
+            await this._context.AddAsync(lg);
+            await this._context.SaveChangesAsync();
 
             // if collection, then show all sub-accounts
-            if (userParams.Gender != "collection")
+            if (userParams.Gender == "personal")
                 users = users.Where(u => u.Id == userParams.UserId);
+            else if (userParams.Gender == "familyAsset")
+                users = users.Where(u => u.Gender == "familyAsset");
             else
                 users = users.OrderBy(u => u.Gender);
 
             if (userParams.OlderThanDays != 0)
             {
-                var minActive = DateTime.Today.AddDays(-userParams.OlderThanDays - 1);
-
                 users = users.Where(u => u.LastActive <= minActive);
             }
 

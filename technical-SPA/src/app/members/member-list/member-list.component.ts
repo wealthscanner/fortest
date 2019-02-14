@@ -13,7 +13,7 @@ import { Pagination, PaginatedResult } from 'src/app/_models/pagination';
 export class MemberListComponent implements OnInit {
   users: User[];
   user: User = JSON.parse(localStorage.getItem('user'));
-  genderList = [{value: 'resource', display: 'Artefacts'}, {value: 'collection', display: 'Account'}];
+  genderList: any = [];
   userParams: any = {};
   pagination: Pagination;
 
@@ -21,13 +21,12 @@ export class MemberListComponent implements OnInit {
     private alertify: AlertifyService, private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.setQueryParameters();
+
     this.route.data.subscribe(data => {
       this.users = data['users'].result;
       this.pagination = data['users'].pagination;
     });
-
-    this.userParams.gender = 'collection';
-    this.userParams.OlderThanDays = 0;
   }
 
   pageChanged(event: any): void {
@@ -35,20 +34,31 @@ export class MemberListComponent implements OnInit {
     this.loadUsers();
   }
 
-  resetFilters() {
-    this.userParams.gender = 'collection';
+  setQueryParameters() {
+
+    // show all older than updated today
     this.userParams.OlderThanDays = 0;
-    this.loadUsers();
+
+    // select gender
+    this.userParams.Gender = this.user.gender;
+
+    this.genderList = [{value: 'familyAsset', display: 'FamilyAsset'},
+      {value: 'collection', display: 'Account'}];
+
+    if (this.userParams.Gender !== 'collection') {
+      this.genderList.push({value: 'personal', display: 'Personal'});
+    }
   }
 
   loadUsers() {
-    this.userService.getUsers(this.pagination.currentPage, this.pagination.itemsPerPage)
+    this.userService.getUsers(this.pagination.currentPage, this.pagination.itemsPerPage, this.userParams)
       .subscribe((res: PaginatedResult<User[]>) => {
         this.users = res.result;
         this.pagination = res.pagination;
     }, error => {
       this.alertify.error(error);
     });
+    this.setQueryParameters();
   }
 
 }
