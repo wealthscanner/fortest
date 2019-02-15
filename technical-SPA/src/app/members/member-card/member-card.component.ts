@@ -1,6 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { UseExistingWebDriver } from 'protractor/built/driverProviders';
 import { User } from 'src/app/_models/user';
+import { AlertifyService } from 'src/app/_service/alertify.service';
+import { AuthService } from 'src/app/_service/auth.service';
+import { UserService } from 'src/app/_service/user.service';
 
 @Component({
   selector: 'app-member-card',
@@ -10,7 +13,17 @@ import { User } from 'src/app/_models/user';
 export class MemberCardComponent implements OnInit {
   @Input() user: User;
 
-  constructor() { }
+  constructor(private authService: AuthService, private userService: UserService,
+    private altertify: AlertifyService) { }
+
+
+  sendSell(id: number) {
+    this.userService.sendSell(this.authService.decodedToken.nameid, id).subscribe(data =>  {
+        this.altertify.success('Added to SalesCloud: ' + this.user.username);
+    }, error => {
+      this.altertify.error(error);
+    });
+  }
 
   ngOnInit() {
   }

@@ -56,12 +56,21 @@ namespace technical.API.Data
             var users = this._context.Users.Include(p => p.Photos).AsQueryable();
             var minActive = DateTime.Today.AddDays(-userParams.OlderThanDays - 1);
 
+            #region create database log
             Log lg = new Log();
             lg.Text = "Gender: " + userParams.Gender
                 + ", OlderThanDays: " + userParams.OlderThanDays
-                + ", <= minActive: " + minActive;
+                + ", <= minActive: " + minActive
+                + ", Assets: " + userParams.Assets;
             await this._context.AddAsync(lg);
             await this._context.SaveChangesAsync();
+            #endregion
+
+            if (userParams.Assets)
+            {
+                var userAssets = await this.GetUserAssets(userParams.UserId);
+                users = users.Where(u => userAssets.Contains(u.Id));
+            }
 
             // if collection, then show all sub-accounts
             if (userParams.Gender == "personal")
@@ -78,6 +87,23 @@ namespace technical.API.Data
 
             return await PagedList<User>.CreateAsync(users, userParams.PageNumber, userParams.PageSize);
 
+        }
+
+        private async Task<IEnumerable<int>> GetUserAssets(int id)
+        {
+            var user = await this._context.Users.Include(x => x.Assets)
+                .FirstOrDefaultAsync(u => u.Id == id);
+
+            # region Logging
+            Log lg = new Log();
+            lg.Text = "id: " + user.Id + ", assets.count: " + user.Assets.Count;
+            lg.Text += ", retUser_2.Id: "
+                + user.Assets.Select(i => i.AssetId).FirstOrDefault();
+            this._context.Add(lg);
+            await this._context.SaveChangesAsync();
+            # endregion
+
+            return user.Assets.Select(i => i.AssetId);
         }
 
         public async Task<bool> SaveAll()
