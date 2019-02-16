@@ -93,8 +93,16 @@ namespace technical.API
             
             app.UseCors(builder => builder.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
 
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
+
             // app.UseHttpsRedirection();
-            app.UseMvc();
+            app.UseMvc(routes => {
+                routes.MapSpaFallbackRoute(
+                    name: "spa-fallback",
+                    defaults: new { controller = "Fallback", action = "index" }
+                );
+            });
         }
     }
 }
