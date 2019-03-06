@@ -6,11 +6,11 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using technical.API.Data;
 
-namespace technical.API.Migrations
+namespace TrustFelix.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20190214133512_SalesCloud")]
-    partial class SalesCloud
+    [Migration("20190303154152_recreate")]
+    partial class recreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -18,16 +18,46 @@ namespace technical.API.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.2.1-servicing-10028");
 
-            modelBuilder.Entity("technical.API.Models.Log", b =>
+            modelBuilder.Entity("technical.API.Models.Form", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Desc");
+
+                    b.Property<string>("Field");
+
+                    b.Property<string>("Name");
+
+                    b.Property<string>("Value");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Forms");
+                });
+
+            modelBuilder.Entity("technical.API.Models.Log", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("CId");
+
+                    b.Property<int>("CotId");
+
+                    b.Property<int>("LnkId");
+
+                    b.Property<int>("OrdId");
+
+                    b.Property<string>("Source");
+
+                    b.Property<DateTime>("Stamp");
 
                     b.Property<string>("Text");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Logging");
+                    b.ToTable("Logs");
                 });
 
             modelBuilder.Entity("technical.API.Models.Photo", b =>

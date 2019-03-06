@@ -45,7 +45,7 @@ namespace technical.API.Models.Yodlee
 
         public string UserClassification { get; set; }
 
-        public List<DatasetDataAcc> Dataset { get; set; }
+        public ICollection<DatasetDataAcc> Dataset { get; set; }
 
         public string ProviderName { get; set; }
     }

@@ -4,6 +4,6 @@ namespace technical.API.Models.Yodlee
 {
     public class Accounts
     {
-        public List<AccountData> Account { get; set; }
+        public ICollection<AccountData> Account { get; set; }
     }
 }

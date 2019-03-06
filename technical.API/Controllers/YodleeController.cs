@@ -46,7 +46,7 @@ namespace technical.API.Controllers
             return Ok(log);
         }
 
-        [HttpGet("{providers}")]
+        [HttpGet("providers")]
         public async Task<IActionResult> Providers()
         {
             var prov = await this._repo.SaveProviderData();
@@ -54,7 +54,7 @@ namespace technical.API.Controllers
             return Ok(prov);
         }
 
-        [HttpGet("{accounts}")]
+        [HttpGet("accounts")]
         public async Task<IActionResult> Accounts()
         {
             var acc = await this._repo.SaveAccountData_User("todo: username");
