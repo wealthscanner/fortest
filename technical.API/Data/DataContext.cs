@@ -14,9 +14,11 @@ namespace technical.API.Data
 
         public DbSet<Photo> Photos { get; set; }
 
-        public DbSet<Log> Logging { get; set; }
+        public DbSet<Log> Logs { get; set; }
 
         public DbSet<Sell> Sells { get; set; }
+
+        public DbSet<Form> Forms { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

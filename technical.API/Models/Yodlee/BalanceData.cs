@@ -1,6 +1,6 @@
 namespace technical.API.Models.Yodlee
 {
-    public class Balance
+    public class BalanceData
     {
         public long Amount { get; set; }
 

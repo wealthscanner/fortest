@@ -16,6 +16,7 @@ namespace technical.API.Data
         {
             this._context = context;
         }
+
         public void Add<T>(T entity) where T : class
         {
             this._context.Add(entity);
@@ -56,16 +57,6 @@ namespace technical.API.Data
             var users = this._context.Users.Include(p => p.Photos).AsQueryable();
             var minActive = DateTime.Today.AddDays(-userParams.OlderThanDays - 1);
 
-            #region create database log
-            Log lg = new Log();
-            lg.Text = "Gender: " + userParams.Gender
-                + ", OlderThanDays: " + userParams.OlderThanDays
-                + ", <= minActive: " + minActive
-                + ", Assets: " + userParams.Assets;
-            await this._context.AddAsync(lg);
-            await this._context.SaveChangesAsync();
-            #endregion
-
             if (userParams.Assets)
             {
                 var userAssets = await this.GetUserAssets(userParams.UserId);
@@ -86,7 +77,6 @@ namespace technical.API.Data
             }
 
             return await PagedList<User>.CreateAsync(users, userParams.PageNumber, userParams.PageSize);
-
         }
 
         private async Task<IEnumerable<int>> GetUserAssets(int id)

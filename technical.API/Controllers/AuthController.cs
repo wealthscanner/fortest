@@ -1,5 +1,4 @@
 using System;
-using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,6 +9,7 @@ using Microsoft.IdentityModel.Tokens;
 using technical.API.Data;
 using technical.API.Dtos;
 using technical.API.Models;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace technical.API.Controllers
 {

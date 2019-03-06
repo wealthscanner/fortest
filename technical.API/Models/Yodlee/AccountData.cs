@@ -1,6 +1,9 @@
+using System;
+using System.Collections.Generic;
+
 namespace technical.API.Models.Yodlee
 {
-    public class Account
+    public class AccountData
     {
         public BalanceData AvailableCash { get; set; }
 
@@ -26,7 +29,7 @@ namespace technical.API.Models.Yodlee
 
         public string IsAsset { get; set; }
 
-        public string CreatedDate { get; set; }
+        public string CreatedDate { get; set; }   // DateTime would work as well
 
         public BalanceData Balance { get; set; }
 
@@ -42,7 +45,7 @@ namespace technical.API.Models.Yodlee
 
         public string UserClassification { get; set; }
 
-        public DatasetDataAcc dataset { get; set; }
+        public List<DatasetDataAcc> Dataset { get; set; }
 
         public string ProviderName { get; set; }
     }
